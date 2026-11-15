@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Abdurazak Mohammed - Tech Simplifying Web</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #f8fafc;
+      --border: #cbd5e1;
+      --text: #000000;
+      --muted: #334155;
+      --primary: #047857;
+      --accent: #0369a1;
+      --danger: #b91c1c;
+      --warning: #b45309;
+    }
+    * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 80px; }
+    header {
+      background: #ffffff;
+      padding: 16px;
+      border-bottom: 2px solid #000000;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand-title { font-size: 1.3rem; font-weight: 900; color: #000000; margin: 0; letter-spacing: 0.3px; }
+    .brand-sub { font-size: 0.88rem; color: #047857; margin: 4px 0 12px; font-weight: 700; }
+    .lang-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
+    .lang-btn {
+      background: #f1f5f9;
+      border: 1.5px solid #000000;
+      color: #000000;
+      padding: 8px 4px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .lang-btn.active { background: #000000; border-color: #000000; color: #ffffff; }
+    .smart-lang-box { display: flex; gap: 6px; }
+    .smart-lang-box input {
+      flex: 1;
+      background: #ffffff;
+      border: 1.5px solid #000000;
+      color: #000000;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .smart-lang-box button {
+      background: #047857;
+      color: #ffffff;
+      border: 1.5px solid #000000;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 14px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+    .stat-card {
+      background: var(--card);
+      border: 1.5px solid #000000;
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+    .stat-val { font-size: 1.2rem; font-weight: 900; margin-top: 4px; color: var(--primary); }
+    .stat-val.debt { color: var(--danger); }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: #f1f5f9;
+      padding: 6px;
+      border-radius: 12px;
+      border: 1.5px solid #000000;
+      margin-bottom: 16px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: #000000;
+      padding: 10px 4px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .tab-btn.active { background: #000000; color: #ffffff; }
+    .section { display: none; }
+    .section.active { display: block; }
+    .card {
+      background: var(--card);
+      border: 1.5px solid #000000;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 14px;
+    }
+    h3 { margin: 0 0 12px; font-size: 1.05rem; color: #000000; font-weight: 900; }
+    label { display: block; font-size: 0.85rem; color: #000000; font-weight: 700; margin: 10px 0 4px; }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 9px;
+      border: 1.5px solid #000000;
+      background: #ffffff;
+      color: #000000;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .quick-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pill {
+      background: #ffffff;
+      border: 1.5px solid #000000;
+      color: #000000;
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .calc-preview {
+      background: #ecfdf5;
+      border: 1.5px solid #047857;
+      color: #000000;
+      padding: 10px;
+      border-radius: 9px;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+    }
+    .btn-primary {
+      width: 100%;
+      background: #047857;
+      color: #ffffff;
+      border: 1.5px solid #000000;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 0.98rem;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+    .btn-snapshot {
+      width: 100%;
+      background: #0369a1;
+      color: #ffffff;
+      border: 1.5px solid #000000;
+      padding: 11px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .btn-sm {
+      padding: 6px 10px;
+      border-radius: 7px;
+      border: 1.5px solid #000000;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-right: 4px;
+      margin-top: 8px;
+    }
+    .btn-pay { background: #047857; color: #ffffff; }
+    .btn-img { background: #0369a1; color: #ffffff; }
+    .btn-edit { background: #f59e0b; color: #000000; }
+    .btn-del { background: #dc2626; color: #ffffff; }
+    .item-card {
+      background: #ffffff;
+      border: 1.5px solid #000000;
+      border-radius: 11px;
+      padding: 12px;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+    .item-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .badge {
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      font-weight: 900;
+    }
+    .badge-paid { background: #d1fae5; color: #065f46; border: 1.5px solid #047857; }
+    .badge-debt { background: #fee2e2; color: #991b1b; border: 1.5px solid #b91c1c; }
+    .meta { font-size: 0.84rem; color: #1e293b; margin-top: 6px; line-height: 1.45; font-weight: 500; }
+    .pay-history {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed #64748b;
+      font-size: 0.8rem;
+      color: #000000;
+      font-weight: 600;
+    }
+    .stock-chip {
+      display: inline-block;
+      background: #ffffff;
+      border: 1.5px solid #000000;
+      color: #000000;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin: 4px 6px 4px 0;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      color: #000000;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 class="brand-title">Abdurazak Mohammed</h1>
+  <div class="brand-sub" id="welcomeText">Welcome to Abdurazak Mohammed Tech Simplifying Web</div>
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+    <button class="lang-btn" onclick="setLang('om')" id="btn-om">Oromoo</button>
+    <button class="lang-btn" onclick="setLang('so')" id="btn-so">Soomaali</button>
+    <button class="lang-btn" onclick="setLang('am')" id="btn-am">አማርኛ</button>
+  </div>
+  <div class="smart-lang-box">
+    <input type="text" id="langInput" placeholder="Hello / Akkam / Nabad / Selam..." />
+    <button onclick="detectUserLang()" id="btnDetect" data-i18n="switchBtn">Switch</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label" data-i18n="totalSalesLbl">Total Sales (ETB)</div>
+      <div class="stat-val" id="statSales">0 ETB</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label" id="statDebtLabel" data-i18n="totalDebtLbl">Unpaid Customer Debt</div>
+      <div class="stat-val debt" id="statDebt">0 ETB</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('shipments', this)" data-i18n="tabShip">Shipments</button>
+    <button class="tab-btn" onclick="switchTab('sales', this)" data-i18n="tabSales">Daily Sales</button>
+    <button class="tab-btn" onclick="switchTab('debts', this)" id="tabDebtsBtn" data-i18n="tabDebts">Debt</button>
+    <button class="tab-btn" onclick="switchTab('stock', this)" data-i18n="tabStock">Stock</button>
+  </div>
+
+  <!-- TAB 1: SHIPMENTS -->
+  <div id="tab-shipments" class="section active">
+    <div class="card">
+      <h3 data-i18n="addShipTitle">Record Incoming Shipment</h3>
+      <input type="hidden" id="editShipId" />
+      <label data-i18n="shipNameLbl">Shipment / Batch Name</label>
+      <input type="text" id="shipName" placeholder="e.g. Batch #01" />
+
+      <label data-i18n="prodNameLbl">Product Name</label>
+      <input type="text" id="shipProd" />
+      <div class="quick-pills" id="shipPills"></div>
+
+      <div class="row-2">
+        <div>
+          <label data-i18n="qtyLbl">Quantity Received</label>
+          <input type="number" id="shipQty" min="1" value="1" oninput="calcShipTotal()" />
+        </div>
+        <div>
+          <label data-i18n="unitPriceLbl">Purchase Price / Unit (ETB)</label>
+          <input type="number" id="shipPrice" min="0" value="0" oninput="calcShipTotal()" />
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div>
+          <label data-i18n="supplierLbl">Supplier Name</label>
+          <input type="text" id="shipSupplier" />
+        </div>
+        <div>
+          <label data-i18n="dateLbl">Date Received</label>
+          <input type="date" id="shipDate" />
+        </div>
+      </div>
+
+      <div class="calc-preview">
+        <span data-i18n="totalCostLbl">Total Shipment Cost:</span>
+        <span id="shipTotalPreview">0 ETB</span>
+      </div>
+      <button class="btn-primary" onclick="saveShipment()" data-i18n="saveShipBtn">Save Shipment</button>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="shipListTitle">Incoming Shipments History</h3>
+      <div id="shipmentList"></div>
+      <button class="btn-snapshot" onclick="downloadPageSnapshot('shipments')" data-i18n="dlShipSnap">Download Shipments Report (PNG)</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: DAILY SALES -->
+  <div id="tab-sales" class="section">
+    <div class="card">
+      <h3 data-i18n="addSaleTitle">Record Daily Sale</h3>
+      <input type="hidden" id="editSaleId" />
+      <label data-i18n="custNameLbl">Customer / Shop Name</label>
+      <input type="text" id="saleCustomer" />
+
+      <label data-i18n="prodSoldLbl">Product Sold</label>
+      <input type="text" id="saleProd" />
+      <div class="quick-pills" id="salePills"></div>
+
+      <div class="row-2">
+        <div>
+          <label data-i18n="qtySoldLbl">Quantity Sold</label>
+          <input type="number" id="saleQty" min="1" value="1" oninput="calcSaleTotal()" />
+        </div>
+        <div>
+          <label data-i18n="sellPriceLbl">Selling Price / Unit (ETB)</label>
+          <input type="number" id="salePrice" min="0" value="0" oninput="calcSaleTotal()" />
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div>
+          <label data-i18n="paidAmtLbl">Amount Paid Now (ETB)</label>
+          <input type="number" id="salePaid" min="0" value="0" oninput="calcSaleTotal()" />
+        </div>
+        <div>
+          <label data-i18n="saleDateLbl">Sale Date</label>
+          <input type="date" id="saleDate" />
+        </div>
+      </div>
+
+      <div class="calc-preview">
+        <span id="saleTotalPreview">Total: 0 ETB</span>
+        <span id="saleRemainPreview" style="color:#b91c1c;">Debt: 0 ETB</span>
+      </div>
+      <button class="btn-primary" onclick="saveSale()" data-i18n="saveSaleBtn">Save Sale & Receipt</button>
+    </div>
+
+    <div class="card">
+      <h3 data-i18n="salesListTitle">Sales & Receipts (PNG)</h3>
+      <div id="salesList"></div>
+      <button class="btn-snapshot" onclick="downloadPageSnapshot('sales')" data-i18n="dlSalesSnap">Download Sales Report (PNG)</button>
+    </div>
+  </div>
+
+  <!-- TAB 3: CUSTOMER DEBT -->
+  <div id="tab-debts" class="section">
+    <div class="card">
+      <h3 id="debtTitleHead" data-i18n="debtListTitle">Customer Debt Management</h3>
+      <div id="debtList"></div>
+      <button class="btn-snapshot" onclick="downloadPageSnapshot('debts')" id="dlDebtSnapBtn" data-i18n="dlDebtsSnap">Download Debt Report (PNG)</button>
+    </div>
+  </div>
+
+  <!-- TAB 4: WAREHOUSE STOCK & BACKUP -->
+  <div id="tab-stock" class="section">
+    <div class="card">
+      <h3 data-i18n="stockTitle">Available Warehouse Stock</h3>
+      <div id="stockSummary"></div>
+      <button class="btn-snapshot" onclick="downloadPageSnapshot('stock')" data-i18n="dlStockSnap">Download Stock Report (PNG)</button>
+    </div>
+    <div class="card">
+      <h3 data-i18n="backupTitle">Device Database Backup</h3>
+      <button class="btn-primary" onclick="exportBackup()" data-i18n="exportBtn">📥 Download Database File (.json)</button>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Abdurazak Mohammed</strong> - Tech Simplifying Web
+  </footer>
+</div>
+
+<canvas id="snapshotCanvas" width="640" style="display:none;"></canvas>
+
+<script>
+  const I18N = {
+    en: {
+      welcome: "Welcome to Abdurazak Mohammed Tech Simplifying Web",
+      switchBtn: "Switch",
+      langPlaceholder: "Type greeting: Hello / Akkam / Nabad / Selam...",
+      totalSalesLbl: "Total Sales (ETB)",
+      totalDebtLbl: "Unpaid Customer Debt",
+      tabShip: "Shipments",
+      tabSales: "Daily Sales",
+      tabDebts: "Debt",
+      tabStock: "Stock",
+      addShipTitle: "Record Incoming Shipment",
+      shipNameLbl: "Shipment / Batch Name",
+      shipNamePh: "e.g. Batch #01",
+      prodNameLbl: "Product Name",
+      prodNamePh: "Oil, Sugar, Rice, Macaroni, Candy...",
+      qtyLbl: "Quantity Received",
+      unitPriceLbl: "Purchase Price / Unit (ETB)",
+      supplierLbl: "Supplier Name",
+      supplierPh: "Supplier name",
+      dateLbl: "Date Received",
+      totalCostLbl: "Total Shipment Cost:",
+      saveShipBtn: "Save Shipment",
+      shipListTitle: "Incoming Shipments History",
+      addSaleTitle: "Record Daily Sale",
+      custNameLbl: "Customer / Shop Name",
+      custNamePh: "e.g. Ahmed Shop",
+      prodSoldLbl: "Product Sold",
+      qtySoldLbl: "Quantity Sold",
+      sellPriceLbl: "Selling Price / Unit (ETB)",
+      paidAmtLbl: "Amount Paid Now (ETB)",
+      saleDateLbl: "Sale Date",
+      saveSaleBtn: "Save Sale & Receipt",
+      salesListTitle: "Sales & Receipts (PNG)",
+      debtListTitle: "Customer Debt Management",
+      stockTitle: "Available Warehouse Stock",
+      backupTitle: "Device Database Backup",
+      exportBtn: "📥 Download Database File (.json)",
+      paidFull: "PAID IN FULL",
+      unpaid: "UNPAID DEBT",
+      recordPay: "+ Record Payment",
+      dlReceipt: "Receipt PNG",
+      dlShipSnap: "Download Shipments Report (PNG)",
+      dlSalesSnap: "Download Sales Report (PNG)",
+      dlDebtsSnap: "Download Debt Report (PNG)",
+      dlStockSnap: "Download Stock Report (PNG)",
+      edit: "Edit",
+      del: "Delete",
+      totalWord: "Total",
+      paidWord: "Paid",
+      debtWord: "Debt",
+      dateWord: "Date",
+      finishedWord: "Finished",
+      unitsWord: "units",
+      noShip: "No shipments recorded yet.",
+      noSale: "No sales recorded yet.",
+      noDebt: "No customer records yet.",
+      noStock: "Add shipments to track stock automatically.",
+      allPaidMsg: "All customer debts are fully paid!",
+      promptPay: "Remaining debt for",
+      promptEnter: "Enter amount paid now (ETB):",
+      alertMissing: "Please enter all required fields.",
+      pills: ["Oil", "Sugar", "Rice", "Macaroni", "Candy"]
+    },
+    om: {
+      welcome: "Baga gara Abdurazak Mohammed Tech Simplifying Web nagaan dhuftan",
+      switchBtn: "Jijjiiri",
+      langPlaceholder: "Nagaa barreessi: Akkam / Hello / Nabad / Selam...",
+      totalSalesLbl: "Gurgurtaa Waliigalaa (ETB)",
+      totalDebtLbl: "Liqii Maamiltootaa Hin Kaffalamin",
+      tabShip: "Fe'umsa",
+      tabSales: "Gurgurtaa",
+      tabDebts: "Liqii",
+      tabStock: "Kuusaa",
+      addShipTitle: "Fe'umsa Haaraa Galmeessi",
+      shipNameLbl: "Maqaa Fe'umsaa",
+      shipNamePh: "fkn. Fe'umsa #01",
+      prodNameLbl: "Maqaa Meeshaa",
+      prodNamePh: "Zayita, Sukkaara, Ruuza, Makaroonii, Karameellaa...",
+      qtyLbl: "Baay'ina Meeshaa",
+      unitPriceLbl: "Gatii Bittaa Tokkoo (ETB)",
+      supplierLbl: "Maqaa Dhiyeessaa",
+      supplierPh: "Maqaa dhiyeessaa",
+      dateLbl: "Guyyaa Itti Dhufe",
+      totalCostLbl: "Gatii Waliigalaa:",
+      saveShipBtn: "Fe'umsa Olkaa'i",
+      shipListTitle: "Tarree Fe'umsaa",
+      addSaleTitle: "Gurgurtaa Guyyaa Galmeessi",
+      custNameLbl: "Maqaa Maamilaa / Suuqii",
+      custNamePh: "fkn. Suuqii Ahmed",
+      prodSoldLbl: "Meeshaa Gurgurame",
+      qtySoldLbl: "Baay'ina Gurgurame",
+      sellPriceLbl: "Gatii Gurgurtaa Tokkoo (ETB)",
+      paidAmtLbl: "Maallaqa Amma Kaffalame (ETB)",
+      saleDateLbl: "Guyyaa Gurgurtaa",
+      saveSaleBtn: "Gurgurtaa & Nagahee Olkaa'i",
+      salesListTitle: "Tarree Gurgurtaa fi Nagahee",
+      debtListTitle: "To'annoo Liqii Maamiltootaa",
+      stockTitle: "Meeshaa Kuusaa Keessa Jiru",
+      backupTitle: "Kuusaa Daataa Bilbilaa",
+      exportBtn: "📥 Faayila Daataa Buufadhu (.json)",
+      paidFull: "GUUTUUMMAATTI KAFFALAMEERA",
+      unpaid: "LIQII HAFA",
+      recordPay: "+ Kaffaltii Galmeessi",
+      dlReceipt: "Nagahee PNG",
+      dlShipSnap: "Gabaasa Fe'umsaa Buufadhu (PNG)",
+      dlSalesSnap: "Gabaasa Gurgurtaa Buufadhu (PNG)",
+      dlDebtsSnap: "Gabaasa Liqii Buufadhu (PNG)",
+      dlStockSnap: "Gabaasa Kuusaa Buufadhu (PNG)",
+      edit: "Gulaali",
+      del: "Haqi",
+      totalWord: "Waliigala",
+      paidWord: "Kaffalame",
+      debtWord: "Liqii",
+      dateWord: "Guyyaa",
+      finishedWord: "Xumurame",
+      unitsWord: "firee",
+      noShip: "Fe'umsi galmaa'e hin jiru.",
+      noSale: "Gurgurtaan galmaa'e hin jiru.",
+      noDebt: "Galmeen liqii maamilaa hin jiru.",
+      noStock: "Kuusaa hordofuuf fe'umsa galmeessi.",
+      allPaidMsg: "Liqiin maamiltootaa hundi kaffalameera!",
+      promptPay: "Liqii hafe kan",
+      promptEnter: "Maallaqa amma kaffalame galchi (ETB):",
+      alertMissing: "Maaloo maqaa meeshaa fi baay'ina galchi.",
+      pills: ["Zayita", "Sukkaara", "Ruuza", "Makaroonii", "Karameellaa"]
+    },
+    so: {
+      welcome: "Ku soo dhawoow Abdurazak Mohammed Tech Simplifying Web",
+      switchBtn: "Beddel",
+      langPlaceholder: "Qor salaanta: Nabad / Hello / Akkam / Selam...",
+      totalSalesLbl: "Wadarta Iibka (ETB)",
+      totalDebtLbl: "Deynta Macaamiisha ee Hadhay",
+      tabShip: "Alaabta",
+      tabSales: "Iibka",
+      tabDebts: "Deymaha",
+      tabStock: "Bakhaarka",
+      addShipTitle: "Diiwaangeli Alaabta Timid",
+      shipNameLbl: "Magaca Shixnadda",
+      shipNamePh: "tusaale: Shixnadda #01",
+      prodNameLbl: "Magaca Alaabta",
+      prodNamePh: "Saliid, Sonkor, Bariis, Baasto, Nacnac...",
+      qtyLbl: "Tirada Timid",
+      unitPriceLbl: "Qiimaha Halkii Xabo (ETB)",
+      supplierLbl: "Magaca Keenaha",
+      supplierPh: "Magaca keenaha",
+      dateLbl: "Taariikhda ay Timid",
+      totalCostLbl: "Wadarta Qiimaha:",
+      saveShipBtn: "Keydi Alaabta",
+      shipListTitle: "Taariikhda Alaabta Timid",
+      addSaleTitle: "Diiwaangeli Iibka Maalinta",
+      custNameLbl: "Magaca Macmiilka / Dukaanka",
+      custNamePh: "tusaale: Dukaanka Ahmed",
+      prodSoldLbl: "Alaabta la Iibiyay",
+      qtySoldLbl: "Tirada la Iibiyay",
+      sellPriceLbl: "Qiimaha Iibka Halkii Xabo (ETB)",
+      paidAmtLbl: "Lacagta Hadda la Bixiyay (ETB)",
+      saleDateLbl: "Taariikhda Iibka",
+      saveSaleBtn: "Keydi Iibka & Rasiidhka",
+      salesListTitle: "Iibka & Rasiidhada (PNG)",
+      debtListTitle: "Maamulka Deymaha Macaamiisha",
+      stockTitle: "Alaabta Bakhaarka Taalla",
+      backupTitle: "Keydka Xogta Taleefanka",
+      exportBtn: "📥 Soo Deji Faylka Xogta (.json)",
+      paidFull: "DHAMMAAN WAA LA BIXIYAY",
+      unpaid: "DEYN HADHAY",
+      recordPay: "+ Diiwaangeli Lacag",
+      dlReceipt: "Rasiidh PNG",
+      dlShipSnap: "Soo Deji Warbixinta Alaabta (PNG)",
+      dlSalesSnap: "Soo Deji Warbixinta Iibka (PNG)",
+      dlDebtsSnap: "Soo Deji Warbixinta Deymaha (PNG)",
+      dlStockSnap: "Soo Deji Warbixinta Bakhaarka (PNG)",
+      edit: "Beddel",
+      del: "Tirtir",
+      totalWord: "Wadarta",
+      paidWord: "La Bixiyay",
+      debtWord: "Deyn",
+      dateWord: "Taariikh",
+      finishedWord: "La Dhammeeyay",
+      unitsWord: "xabo",
+      noShip: "Weli wax alaab ah lama diiwaangelin.",
+      noSale: "Weli wax iib ah lama diiwaangelin.",
+      noDebt: "Weli wax deyn ah ma jiro.",
+      noStock: "Diiwaangeli alaabta si aad u aragto bakhaarka.",
+      allPaidMsg: "Dhammaan deymihii waa la bixiyay!",
+      promptPay: "Deynta ku hadhay",
+      promptEnter: "Geli lacagta hadda la bixiyay (ETB):",
+      alertMissing: "Fadlan geli magaca alaabta iyo tirada.",
+      pills: ["Saliid", "Sonkor", "Bariis", "Baasto", "Nacnac"]
+    },
+    am: {
+      welcome: "እንኳን ወደ Abdurazak Mohammed Tech Simplifying Web በደህና መጡ",
+      switchBtn: "ቀይር",
+      langPlaceholder: "ሰላምታ ይጻፉ: Selam / Hello / Akkam / Nabad...",
+      totalSalesLbl: "ጠቅላላ ሽያጭ (ETB)",
+      totalDebtLbl: "ያልተከፈለ የደንበኞች እዳ",
+      tabShip: "ገቢ ዕቃ",
+      tabSales: "ሽያጭ",
+      tabDebts: "እዳዎች",
+      tabStock: "መጋዘን",
+      addShipTitle: "አዲስ ገቢ ዕቃ መዝግብ",
+      shipNameLbl: "የጭነት ስም",
+      shipNamePh: "ምሳሌ: ጭነት #01",
+      prodNameLbl: "የዕቃው ስም",
+      prodNamePh: "ዘይት፣ ስኳር፣ ሩዝ፣ መኮሮኒ፣ ከረሜላ...",
+      qtyLbl: "የገባው ብዛት",
+      unitPriceLbl: "የአንዱ መግዣ ዋጋ (ETB)",
+      supplierLbl: "የአቅራቢው ስም",
+      supplierPh: "የአቅራቢው ስም",
+      dateLbl: "የገባበት ቀን",
+      totalCostLbl: "ጠቅላላ ወጪ:",
+      saveShipBtn: "ገቢ ዕቃ አስቀምጥ",
+      shipListTitle: "የገቢ ዕቃዎች ዝርዝር",
+      addSaleTitle: "ዕለታዊ ሽያጭ መዝግብ",
+      custNameLbl: "የደንበኛ / የሱቅ ስም",
+      custNamePh: "ምሳሌ: አህመድ ሱቅ",
+      prodSoldLbl: "የተሸጠው ዕቃ",
+      qtySoldLbl: "የተሸጠው ብዛት",
+      sellPriceLbl: "የአንዱ መሸጫ ዋጋ (ETB)",
+      paidAmtLbl: "አሁን የተከፈለ ገንዘብ (ETB)",
+      saleDateLbl: "የሽያጭ ቀን",
+      saveSaleBtn: "ሽያጭ እና ደረሰኝ አስቀምጥ",
+      salesListTitle: "ሽያጮች እና ደረሰኞች (PNG)",
+      debtListTitle: "የደንበኞች እዳ መቆጣጠሪያ",
+      stockTitle: "መጋዘን ውስጥ ያለ ዕቃ",
+      backupTitle: "የመረጃ መጠባበቂያ",
+      exportBtn: "📥 መጠባበቂያ ፋይል አውርድ (.json)",
+      paidFull: "ሙሉ በሙሉ ተከፍሏል",
+      unpaid: "ቀሪ እዳ አለበት",
+      recordPay: "+ ክፍያ መዝግብ",
+      dlReceipt: "ደረሰኝ PNG",
+      dlShipSnap: "የገቢ ዕቃዎች ሪፖርት አውርድ (PNG)",
+      dlSalesSnap: "የሽያጭ ሪፖርት አውርድ (PNG)",
+      dlDebtsSnap: "የእዳዎች ሪፖርት አውርድ (PNG)",
+      dlStockSnap: "የመጋዘን ሪፖርት አውርድ (PNG)",
+      edit: "አስተካክል",
+      del: "ሰርዝ",
+      totalWord: "ጠቅላላ",
+      paidWord: "የተከፈለ",
+      debtWord: "እዳ",
+      dateWord: "ቀን",
+      finishedWord: "የተጠናቀቀበት",
+      unitsWord: "ፍሬ",
+      noShip: "ምንም የተመዘገበ ገቢ ዕቃ የለም።",
+      noSale: "ምንም የተመዘገበ ሽያጭ የለም።",
+      noDebt: "ምንም የደንበኛ እዳ የለም።",
+      noStock: "መጋዘን ለመከታተል ገቢ ዕቃ ይመዝግቡ።",
+      allPaidMsg: "ሁሉም የደንበኞች እዳ ተከፍሏል!",
+      promptPay: "ቀሪ እዳ ለ",
+      promptEnter: "አሁን የተከፈለውን ገንዘብ ያስገቡ (ETB):",
+      alertMissing: "እባክዎ የዕቃውን ስም እና ብዛት ያስገቡ።",
+      pills: ["ዘይት", "ስኳር", "ሩዝ", "መኮሮኒ", "ከረሜላ"]
+    }
+  };
+
+  let currentLang = localStorage.getItem("am_lang") || "en";
+  let shipments = JSON.parse(localStorage.getItem("am_shipments") || "[]");
+  let sales = JSON.parse(localStorage.getItem("am_sales") || "[]");
+
+  const todayStr = new Date().toISOString().split("T")[0];
+  document.getElementById("shipDate").value = todayStr;
+  document.getElementById("saleDate").value = todayStr;
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem("am_lang", lang);
+    const t = I18N[lang];
+
+    document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("btn-" + lang).classList.add("active");
+    document.getElementById("welcomeText").textContent = t.welcome;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.getAttribute("data-i18n");
+      if (t[k]) el.textContent = t[k];
+    });
+
+    document.getElementById("langInput").placeholder = t.langPlaceholder;
+    document.getElementById("shipName").placeholder = t.shipNamePh;
+    document.getElementById("shipProd").placeholder = t.prodNamePh;
+    document.getElementById("shipSupplier").placeholder = t.supplierPh;
+    document.getElementById("saleCustomer").placeholder = t.custNamePh;
+    document.getElementById("saleProd").placeholder = t.prodNamePh;
+
+    document.getElementById("shipPills").innerHTML = t.pills
+      .map(p => `<span class="pill" onclick="fillProd('shipProd','${p}')">${p}</span>`).join("");
+    document.getElementById("salePills").innerHTML = t.pills
+      .map(p => `<span class="pill" onclick="fillProd('saleProd','${p}')">${p}</span>`).join("");
+
+    calcSaleTotal();
+    renderAll();
+  }
+
+  function detectUserLang() {
+    const val = document.getElementById("langInput").value.trim().toLowerCase();
+    if (!val) return;
+    if (/[\u1200-\u137F]/.test(val) || val.includes("selam") || val.includes("amharic") || val.includes("amhara")) {
+      setLang("am");
+    } else if (val.includes("akkam") || val.includes("nagaa") || val.includes("orom") || val.includes("afaan")) {
+      setLang("om");
+    } else if (val.includes("nabad") || val.includes("sidee") || val.includes("somal") || val.includes("mahadsanid")) {
+      setLang("so");
+    } else {
+      setLang("en");
+    }
+    document.getElementById("langInput").value = "";
+  }
+
+  function switchTab(tab, btn) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("tab-" + tab).classList.add("active");
+    btn.classList.add("active");
+  }
+
+  function fillProd(inputId, name) {
+    document.getElementById(inputId).value = name;
+  }
+
+  function calcShipTotal() {
+    const q = Number(document.getElementById("shipQty").value) || 0;
+    const p = Number(document.getElementById("shipPrice").value) || 0;
+    document.getElementById("shipTotalPreview").textContent = (q * p).toLocaleString() + " ETB";
+  }
+
+  function calcSaleTotal() {
+    const t = I18N[currentLang];
+    const q = Number(document.getElementById("saleQty").value) || 0;
+    const p = Number(document.getElementById("salePrice").value) || 0;
+    const paid = Number(document.getElementById("salePaid").value) || 0;
+    const total = q * p;
+    const remain = Math.max(0, total - paid);
+    document.getElementById("saleTotalPreview").textContent = `${t.totalWord}: ${total.toLocaleString()} ETB`;
+    document.getElementById("saleRemainPreview").textContent = `${t.debtWord}: ${remain.toLocaleString()} ETB`;
+  }
+
+  function saveShipment() {
+    const t = I18N[currentLang];
+    const id = document.getElementById("editShipId").value;
+    const name = document.getElementById("shipName").value.trim() || t.tabShip;
+    const prod = document.getElementById("shipProd").value.trim();
+    const qty = Number(document.getElementById("shipQty").value) || 0;
+    const price = Number(document.getElementById("shipPrice").value) || 0;
+    const supplier = document.getElementById("shipSupplier").value.trim() || "-";
+    const date = document.getElementById("shipDate").value || todayStr;
+    if (!prod || qty <= 0) return alert(t.alertMissing);
+
+    const record = { id: id || Date.now().toString(), name, prod, qty, price, total: qty * price, supplier, date };
+    if (id) {
+      shipments = shipments.map(s => s.id === id ? record : s);
+      document.getElementById("editShipId").value = "";
+    } else {
+      shipments.unshift(record);
+    }
+    localStorage.setItem("am_shipments", JSON.stringify(shipments));
+    document.getElementById("shipName").value = "";
+    document.getElementById("shipProd").value = "";
+    document.getElementById("shipQty").value = 1;
+    document.getElementById("shipPrice").value = 0;
+    calcShipTotal();
+    renderAll();
+  }
+
+  function editShipment(id) {
+    const s = shipments.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById("editShipId").value = s.id;
+    document.getElementById("shipName").value = s.name;
+    document.getElementById("shipProd").value = s.prod;
+    document.getElementById("shipQty").value = s.qty;
+    document.getElementById("shipPrice").value = s.price;
+    document.getElementById("shipSupplier").value = s.supplier;
+    document.getElementById("shipDate").value = s.date;
+    calcShipTotal();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function deleteShipment(id) {
+    shipments = shipments.filter(s => s.id !== id);
+    localStorage.setItem("am_shipments", JSON.stringify(shipments));
+    renderAll();
+  }
+
+  function saveSale() {
+    const t = I18N[currentLang];
+    const id = document.getElementById("editSaleId").value;
+    const customer = document.getElementById("saleCustomer").value.trim();
+    const prod = document.getElementById("saleProd").value.trim();
+    const qty = Number(document.getElementById("saleQty").value) || 0;
+    const price = Number(document.getElementById("salePrice").value) || 0;
+    const paid = Number(document.getElementById("salePaid").value) || 0;
+    const date = document.getElementById("saleDate").value || todayStr;
+    if (!customer || !prod || qty <= 0) return alert(t.alertMissing);
+
+    const total = qty * price;
+    const remain = Math.max(0, total - paid);
+    const existing = id ? sales.find(x => x.id === id) : null;
+    const payments = existing ? existing.payments : (paid > 0 ? [{ amount: paid, date }] : []);
+    const paidFullDate = remain === 0 ? date : (existing ? existing.paidFullDate : null);
+
+    const record = {
+      id: id || Date.now().toString(),
+      customer, prod, qty, price, total, paid, remain, date, payments, paidFullDate
+    };
+
+    if (id) {
+      sales = sales.map(s => s.id === id ? record : s);
+      document.getElementById("editSaleId").value = "";
+    } else {
+      sales.unshift(record);
+    }
+    localStorage.setItem("am_sales", JSON.stringify(sales));
+    document.getElementById("saleCustomer").value = "";
+    document.getElementById("saleProd").value = "";
+    document.getElementById("saleQty").value = 1;
+    document.getElementById("salePrice").value = 0;
+    document.getElementById("salePaid").value = 0;
+    calcSaleTotal();
+    renderAll();
+  }
+
+  function addPayment(id) {
+    const t = I18N[currentLang];
+    const s = sales.find(x => x.id === id);
+    if (!s || s.remain <= 0) return;
+    const input = prompt(`${t.promptPay} ${s.customer}: ${s.remain} ETB.\n${t.promptEnter}`, s.remain);
+    const amt = Number(input);
+    if (!amt || amt <= 0) return;
+    const payAmt = Math.min(s.remain, amt);
+    s.paid += payAmt;
+    s.remain = Math.max(0, s.total - s.paid);
+    s.payments.push({ amount: payAmt, date: todayStr });
+    if (s.remain === 0) s.paidFullDate = todayStr;
+    localStorage.setItem("am_sales", JSON.stringify(sales));
+    renderAll();
+  }
+
+  function editSale(id) {
+    const s = sales.find(x => x.id === id);
+    if (!s) return;
+    document.getElementById("editSaleId").value = s.id;
+    document.getElementById("saleCustomer").value = s.customer;
+    document.getElementById("saleProd").value = s.prod;
+    document.getElementById("saleQty").value = s.qty;
+    document.getElementById("salePrice").value = s.price;
+    document.getElementById("salePaid").value = s.paid;
+    document.getElementById("saleDate").value = s.date;
+    calcSaleTotal();
+    document.querySelectorAll(".tab-btn")[1].click();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function deleteSale(id) {
+    sales = sales.filter(s => s.id !== id);
+    localStorage.setItem("am_sales", JSON.stringify(sales));
+    renderAll();
+  }
+
+  function downloadReceipt(id) {
+    const t = I18N[currentLang];
+    const s = sales.find(x => x.id === id);
+    if (!s) return;
+    const canvas = document.getElementById("snapshotCanvas");
+    canvas.width = 640;
+    canvas.height = 960;
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 640, 960);
+
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, 640, 130);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 28px sans-serif";
+    ctx.fillText("ABDURAZAK MOHAMMED", 32, 55);
+    ctx.font = "18px sans-serif";
+    ctx.fillStyle = "#a7f3d0";
+    ctx.fillText("Tech Simplifying Web", 32, 92);
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 22px sans-serif";
+    ctx.fillText(`${s.customer}`, 32, 185);
+    ctx.font = "18px sans-serif";
+    ctx.fillStyle = "#334155";
+    ctx.fillText(`${t.dateWord}: ${s.date}   |   #${s.id.slice(-5)}`, 32, 220);
+
+    ctx.strokeStyle = "#000000";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(32, 245); ctx.lineTo(608, 245); ctx.stroke();
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 20px sans-serif";
+    ctx.fillText(`${s.prod}`, 32, 295);
+    ctx.font = "20px sans-serif";
+    ctx.fillText(`${s.qty} x ${s.price.toLocaleString()} ETB`, 32, 335);
+
+    ctx.font = "bold 24px sans-serif";
+    ctx.fillText(`${t.totalWord}: ${s.total.toLocaleString()} ETB`, 32, 405);
+    ctx.fillStyle = "#047857";
+    ctx.fillText(`${t.paidWord}: ${s.paid.toLocaleString()} ETB`, 32, 448);
+    ctx.fillStyle = s.remain > 0 ? "#b91c1c" : "#047857";
+    ctx.fillText(`${t.debtWord}: ${s.remain.toLocaleString()} ETB`, 32, 491);
+
+    ctx.strokeStyle = s.remain === 0 ? "#047857" : "#b91c1c";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(32, 535, 576, 75);
+    ctx.font = "bold 22px sans-serif";
+    const statusText = s.remain === 0
+      ? `${t.paidFull} (${s.paidFullDate || s.date})`
+      : `${t.unpaid} - ${s.remain.toLocaleString()} ETB`;
+    ctx.fillText(statusText, 50, 582);
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "16px sans-serif";
+    s.payments.slice(-5).forEach((p, idx) => {
+      ctx.fillText(`• ${p.date}: ${p.amount.toLocaleString()} ETB`, 42, 665 + idx * 28);
+    });
+
+    ctx.fillStyle = "#334155";
+    ctx.font = "15px sans-serif";
+    ctx.fillText("Abdurazak Mohammed - Tech Simplifying Web", 32, 920);
+
+    const link = document.createElement("a");
+    link.download = `Receipt_${s.customer.replace(/\s+/g, "_")}_${s.date}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }
+
+  function downloadPageSnapshot(type) {
+    const t = I18N[currentLang];
+    const canvas = document.getElementById("snapshotCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let itemCount = 0;
+    if (type === 'shipments') itemCount = shipments.length;
+    else if (type === 'sales') itemCount = sales.length;
+    else if (type === 'debts') itemCount = sales.filter(s => s.remain > 0).length;
+    else if (type === 'stock') {
+      const stockMap = {};
+      shipments.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) + s.qty; });
+      sales.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) - s.qty; });
+      itemCount = Object.keys(stockMap).length;
+    }
+
+    const dynamicHeight = Math.max(960, 280 + (itemCount * 55) + 60);
+    canvas.width = 640;
+    canvas.height = dynamicHeight;
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 640, dynamicHeight);
+
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, 640, 125);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 26px sans-serif";
+    ctx.fillText("ABDURAZAK MOHAMMED", 32, 50);
+    ctx.font = "17px sans-serif";
+    ctx.fillStyle = "#a7f3d0";
+    ctx.fillText("Tech Simplifying Web", 32, 86);
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 22px sans-serif";
+    let title = "";
+    if (type === 'shipments') title = t.shipListTitle;
+    if (type === 'sales') title = t.salesListTitle;
+    if (type === 'debts') title = t.debtListTitle;
+    if (type === 'stock') title = t.stockTitle;
+
+    ctx.fillText(title, 32, 172);
+    ctx.font = "15px sans-serif";
+    ctx.fillStyle = "#334155";
+    ctx.fillText(`${t.dateWord}: ${todayStr}`, 32, 198);
+
+    ctx.strokeStyle = "#000000";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(32, 218); ctx.lineTo(608, 218); ctx.stroke();
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 16px sans-serif";
+    let y = 258;
+
+    if (type === 'shipments') {
+      if (!shipments.length) {
+        ctx.fillText(t.noShip, 32, y);
+      } else {
+        shipments.forEach((s, i) => {
+          ctx.fillStyle = "#000000";
+          ctx.font = "bold 16px sans-serif";
+          ctx.fillText(`${i+1}. [${s.name}] ${s.prod} (${s.qty} ${t.unitsWord}) - ${s.total.toLocaleString()} ETB`, 32, y);
+          ctx.fillStyle = "#334155";
+          ctx.font = "14px sans-serif";
+          ctx.fillText(`   Supplier: ${s.supplier} | Date: ${s.date}`, 32, y + 20);
+          y += 50;
+        });
+      }
+    } else if (type === 'sales') {
+      if (!sales.length) {
+        ctx.fillText(t.noSale, 32, y);
+      } else {
+        sales.forEach((s, i) => {
+          ctx.fillStyle = "#000000";
+          ctx.font = "bold 16px sans-serif";
+          ctx.fillText(`${i+1}. ${s.customer} - ${s.prod} (${s.qty}) | ${s.total.toLocaleString()} ETB`, 32, y);
+          ctx.fillStyle = s.remain === 0 ? "#047857" : "#b91c1c";
+          ctx.font = "bold 14px sans-serif";
+          ctx.fillText(`   ${t.paidWord}: ${s.paid} | ${t.debtWord}: ${s.remain} | ${s.date}`, 32, y + 20);
+          y += 50;
+        });
+      }
+    } else if (type === 'debts') {
+      const activeDebts = sales.filter(s => s.remain > 0);
+      if (!activeDebts.length) {
+        ctx.fillStyle = "#047857";
+        ctx.fillText(t.allPaidMsg, 32, y);
+      } else {
+        activeDebts.forEach((s, i) => {
+          ctx.fillStyle = "#b91c1c";
+          ctx.font = "bold 16px sans-serif";
+          ctx.fillText(`${i+1}. ${s.customer} - ${t.debtWord}: ${s.remain.toLocaleString()} ETB`, 32, y);
+          ctx.fillStyle = "#000000";
+          ctx.font = "14px sans-serif";
+          ctx.fillText(`   ${s.prod} (${s.qty}) | ${t.totalWord}: ${s.total} | ${t.paidWord}: ${s.paid}`, 32, y + 20);
+          y += 50;
+        });
+      }
+    } else if (type === 'stock') {
+      const stockMap = {};
+      shipments.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) + s.qty; });
+      sales.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) - s.qty; });
+      const keys = Object.keys(stockMap);
+      if (!keys.length) {
+        ctx.fillText(t.noStock, 32, y);
+      } else {
+        keys.forEach((k) => {
+          ctx.fillStyle = "#000000";
+          ctx.font = "bold 17px sans-serif";
+          ctx.fillText(`• ${k}: ${stockMap[k]} ${t.unitsWord}`, 32, y);
+          y += 38;
+        });
+      }
+    }
+
+    ctx.fillStyle = "#000000";
+    ctx.font = "bold 14px sans-serif";
+    ctx.fillText("Abdurazak Mohammed - Tech Simplifying Web", 32, dynamicHeight - 25);
+
+    const link = document.createElement("a");
+    link.download = `Abdurazak_${type}_${todayStr}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }
+
+  function exportBackup() {
+    const data = JSON.stringify({ owner: "Abdurazak Mohammed", shipments, sales }, null, 2);
+    const blob = new Blob([data], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `Abdurazak_Backup_${todayStr}.json`;
+    a.click();
+  }
+
+  function renderAll() {
+    const t = I18N[currentLang];
+    const totalSalesVal = sales.reduce((acc, s) => acc + s.total, 0);
+    const totalDebtVal = sales.reduce((acc, s) => acc + s.remain, 0);
+    document.getElementById("statSales").textContent = totalSalesVal.toLocaleString() + " ETB";
+    document.getElementById("statDebt").textContent = totalDebtVal.toLocaleString() + " ETB";
+
+    // Shipments
+    document.getElementById("shipmentList").innerHTML = shipments.length ? shipments.map(s => `
+      <div class="item-card">
+        <div class="item-top">
+          <strong>[${s.name}] ${s.prod} (${s.qty} ${t.unitsWord})</strong>
+          <span style="color:#047857;font-weight:800;">${s.total.toLocaleString()} ETB</span>
+        </div>
+        <div class="meta">Supplier: <strong>${s.supplier}</strong> • Date: ${s.date}</div>
+        <div>
+          <button class="btn-sm btn-edit" onclick="editShipment('${s.id}')">${t.edit}</button>
+          <button class="btn-sm btn-del" onclick="deleteShipment('${s.id}')">${t.del}</button>
+        </div>
+      </div>
+    `).join("") : `<div class="meta">${t.noShip}</div>`;
+
+    // Sales
+    document.getElementById("salesList").innerHTML = sales.length ? sales.map(s => `
+      <div class="item-card">
+        <div class="item-top">
+          <strong>${s.customer} - ${s.prod} (${s.qty})</strong>
+          <span class="badge ${s.remain === 0 ? 'badge-paid' : 'badge-debt'}">
+            ${s.remain === 0 ? t.paidFull : t.unpaid}
+          </span>
+        </div>
+        <div class="meta">
+          ${t.totalWord}: <strong>${s.total.toLocaleString()} ETB</strong> | ${t.paidWord}: ${s.paid.toLocaleString()} ETB | ${t.debtWord}: <strong>${s.remain.toLocaleString()} ETB</strong><br/>
+          ${t.dateWord}: ${s.date} ${s.paidFullDate && s.remain === 0 ? `• ${t.finishedWord}: ${s.paidFullDate}` : ''}
+        </div>
+        <div>
+          ${s.remain > 0 ? `<button class="btn-sm btn-pay" onclick="addPayment('${s.id}')">${t.recordPay}</button>` : ''}
+          <button class="btn-sm btn-img" onclick="downloadReceipt('${s.id}')">${t.dlReceipt}</button>
+          <button class="btn-sm btn-edit" onclick="editSale('${s.id}')">${t.edit}</button>
+          <button class="btn-sm btn-del" onclick="deleteSale('${s.id}')">${t.del}</button>
+        </div>
+      </div>
+    `).join("") : `<div class="meta">${t.noSale}</div>`;
+
+    // Debts
+    document.getElementById("debtList").innerHTML = sales.length ? sales.map(s => `
+      <div class="item-card">
+        <div class="item-top">
+          <strong>${s.customer}</strong>
+          <span class="badge ${s.remain === 0 ? 'badge-paid' : 'badge-debt'}">
+            ${s.remain === 0 ? `${t.paidFull} (${s.paidFullDate || s.date})` : `${s.remain.toLocaleString()} ETB`}
+          </span>
+        </div>
+        <div class="meta">${s.prod} (${s.qty}) • ${t.totalWord}: ${s.total.toLocaleString()} ETB • ${t.paidWord}: ${s.paid.toLocaleString()} ETB</div>
+        <div class="pay-history">
+          ${s.payments.map(p => `• ${p.date}: ${p.amount.toLocaleString()} ETB`).join("<br/>")}
+        </div>
+        <div style="margin-top:6px;">
+          ${s.remain > 0 ? `<button class="btn-sm btn-pay" onclick="addPayment('${s.id}')">${t.recordPay}</button>` : ''}
+          <button class="btn-sm btn-img" onclick="downloadReceipt('${s.id}')">${t.dlReceipt}</button>
+        </div>
+      </div>
+    `).join("") : `<div class="meta">${t.noDebt}</div>`;
+
+    // Stock
+    const stockMap = {};
+    shipments.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) + s.qty; });
+    sales.forEach(s => { stockMap[s.prod] = (stockMap[s.prod] || 0) - s.qty; });
+    const stockKeys = Object.keys(stockMap);
+    document.getElementById("stockSummary").innerHTML = stockKeys.length
+      ? stockKeys.map(k => `<div class="stock-chip"><strong>${k}:</strong> ${stockMap[k]} ${t.unitsWord}</div>`).join("")
+      : `<div class="meta">${t.noStock}</div>`;
+  }
+
+  setLang(currentLang);
+</script>
+</body>
+</html>
